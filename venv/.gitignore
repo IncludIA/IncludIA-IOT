@@ -1,0 +1,13 @@
+# Segurança
+.env
+.env.local
+
+# Python Cache e Artefatos
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+.venv/
+
+# Logs
+*.log

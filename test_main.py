@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
-from main import app
+from unittest.mock import patch
+from main import app, RateLimitException
 
 client = TestClient(app)
 
@@ -18,8 +19,19 @@ def test_root_redirect():
     assert response.headers["location"] == "/docs"
 
 
-def test_invalid_model_handling():
-    """Testa se a API lida corretamente com um modelo inválido"""
-    # Aqui você precisaria simular uma chamada que usa um modelo inválido.
-    # Isso pode ser feito mockando a função chamar_gemini_blindado para lançar HTTPException.
-    pass
+@patch("main.chamar_gemini_blindado")
+def test_simulacao_ia(mock_gemini):
+    """Testa o endpoint de moderação simulando uma resposta da IA"""
+    mock_gemini.return_value = {
+        "aprovado": True,
+        "motivo": None,
+        "score_seguranca": 100,
+    }
+
+    payload = {"texto_usuario": "Eu amo programar em Python", "contexto": "bio"}
+
+    response = client.post("/api/v1/seguranca/moderar", json=payload)
+
+    assert response.status_code == 200
+    assert response.json()["aprovado"] is True
+    assert response.json()["score_seguranca"] == 100
