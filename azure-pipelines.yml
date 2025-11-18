@@ -1,0 +1,30 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  azureSubscription: 'Azure for Students'
+  acrConnection: 'AcrConnection' 
+  acrLoginServer: 'acrincludia2771.azurecr.io'
+  
+    webAppName: 'app-includia-iot-2771'
+  dockerfilePath: '**/Dockerfile'
+
+steps:
+- task: Docker@2
+  displayName: 'Build & Push IoT'
+  inputs:
+    containerRegistry: '$(acrConnection)'
+    repository: '$(webAppName)'
+    command: 'buildAndPush'
+    Dockerfile: '$(dockerfilePath)'
+    tags: 'latest'
+
+- task: AzureWebAppContainer@1
+  displayName: 'Deploy IoT to Azure'
+  inputs:
+    azureSubscription: '$(azureSubscription)'
+    appName: '$(webAppName)'
+    containers: '$(acrLoginServer)/$(webAppName):latest'
