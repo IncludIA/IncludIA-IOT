@@ -27,3 +27,4 @@ steps:
     azureSubscription: '$(azureSubscription)'
     appName: '$(webAppName)'
     containers: '$(acrLoginServer)/$(webAppName):latest'
+    appSettings: '-GOOGLE_API_KEY "$(GOOGLE_API_KEY)"'
