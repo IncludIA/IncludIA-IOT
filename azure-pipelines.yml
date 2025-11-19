@@ -9,8 +9,8 @@ variables:
   acrConnection: 'acrConnection' 
   acrLoginServer: 'acrincludia2771.azurecr.io'
   webAppName: 'app-includia-iot-2771'
-  dockerfilePath: 'includia/includia-iot/IncludIA-IOT-b5f91d4febb88ce88f0174cb6cc02c8827528275/Dockerfile'
-  buildContext: 'includia/includia-iot/IncludIA-IOT-b5f91d4febb88ce88f0174cb6cc02c8827528275'
+  dockerfilePath: 'Dockerfile'
+  buildContext: '.'
   
 steps:
 - task: Docker@2
