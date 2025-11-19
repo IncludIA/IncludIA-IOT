@@ -5,8 +5,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  azureSubscription: 'Azure for Students'
-  acrConnection: 'AcrConnection' 
+  azureSubscription: 'azureSubscription'
+  acrConnection: 'acrConnection' 
   acrLoginServer: 'acrincludia2771.azurecr.io'
   webAppName: 'app-includia-iot-2771'
   dockerfilePath: '**/Dockerfile'
