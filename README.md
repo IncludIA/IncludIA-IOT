@@ -8,8 +8,8 @@ Esta API, desenvolvida em **Python (FastAPI)**, atua como o "cérebro" da plataf
 
 ## 🎥 Demonstração e Links
 
-[![Deploy da API](https://img.shields.io/badge/☁️%20Deploy-Acessar%20API-blue?style=for-the-badge&logo=google-cloud)]([COLE_AQUI_SEU_LINK_DO_DEPLOY])
-[![Swagger Docs](https://img.shields.io/badge/📖%20Docs-Swagger%20UI-green?style=for-the-badge&logo=swagger)]([COLE_AQUI_SEU_LINK_DO_DEPLOY]/docs)
+[![Deploy da API](https://img.shields.io/badge/☁️%20Deploy-Acessar%20API-blue?style=for-the-badge&logo=google-cloud)](https://app-includia-iot-2771.azurewebsites.net/health)
+[![Swagger Docs](https://img.shields.io/badge/📖%20Docs-Swagger%20UI-green?style=for-the-badge&logo=swagger)](https://app-includia-iot-2771.azurewebsites.net/docs)
 [![Vídeo Pitch](https://img.shields.io/badge/📺%20YouTube-Assistir%20Pitch-red?style=for-the-badge&logo=youtube)]([COLE_AQUI_O_LINK_DO_VIDEO])
 
 > **Nota:** Clique nos botões acima para acessar os recursos.
