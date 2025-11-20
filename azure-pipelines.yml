@@ -1,23 +1,32 @@
 trigger:
-  - azure-pipelines # Sua branch
+  - azure-pipelines
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-# 1. Script de Debug para mostrar onde estão os arquivos
-- script: |
-    echo ">>> LISTANDO ARQUIVOS DO REPOSITÓRIO:"
-    find . -maxdepth 4 -not -path '*/.*'
-  displayName: '🔍 Debug: Achar Dockerfile'
+variables:
+  azureSubscription: 'azureSubscription'
+  acrConnection: 'acrConnection'
+  acrLoginServer: 'acrincludia2771.azurecr.io'
+  webAppName: 'app-includia-iot-2771'
+  buildContext: '.' 
+  dockerfilePath: 'Dockerfile' 
 
-# 2. Tenta fazer o Build (vai falhar se o caminho estiver errado, mas olhe o log acima)
+steps:
 - task: Docker@2
   displayName: 'Build & Push IoT'
   inputs:
-    containerRegistry: 'acrConnection'
-    repository: 'app-includia-iot-2771'
+    containerRegistry: '$(acrConnection)'
+    repository: '$(webAppName)'
     command: 'buildAndPush'
-    # TENTATIVA MAIS PROVÁVEL (Se estiver na raiz):
-    Dockerfile: '**/Dockerfile' 
+    Dockerfile: '$(dockerfilePath)'
+    buildContext: '$(buildContext)'
     tags: 'latest'
+
+- task: AzureWebAppContainer@1
+  displayName: 'Deploy IoT to Azure'
+  inputs:
+    azureSubscription: '$(azureSubscription)'
+    appName: '$(webAppName)'
+    containers: '$(acrLoginServer)/$(webAppName):latest'
+    appSettings: '-GEMINI_API_KEY "$(GOOGLE_API_KEY)"'
