@@ -141,14 +141,14 @@ Remove dados sensíveis (PII) para Blind Recruitment.
 ### Pré-requisitos
 
   * Python 3.10+
-  * Uma API Key do Google Gemini (`GEMINI_API_KEY`)
+  * Uma API Key do Google Gemini
 
 ### Instalação
 
 1.  **Clone o repositório e entre na pasta:**
 
     ```bash
-    git clone [SEU_LINK_DO_GITHUB]
+    git clone https://github.com/IncludIA/IncludIA-IOT
     cd IncludIA-IOT
     ```
 
